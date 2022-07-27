@@ -1,25 +1,38 @@
+function Key(name, category) {
+        this.name=name
+        this.category=category;
+}
+
 let keys = new Array(20);
-keys[0] = "lekkoatletyka";
-keys[1] = "interpunkcja";
-keys[2] = "telekomunikacja";
-keys[3] = "metamorfoza";
-keys[4] = "kolorowanka";
-keys[5] = "Antyterrorystyczna grupa świerszczy";
-keys[6] = "M jak Miłość";
-keys[7] = "móżdżek";
-keys[8] = "Within Temptation";
-keys[9] = "Nie boję się gdy ciemno jest";
-keys[10] = "Drugi raz pisze się szybciej";
-keys[11] = "Saanah";
-keys[12] = "Ania z Zielonego Wzgórza";
-keys[13] = "Adam Mickiewicz";
-keys[14] = "Tylko mnie kochaj";
-keys[15] = "Nic nie może przecież wiecznie trwać";
-keys[16] = "Miłość w Zakopanem";
+keys[0] = new Key("lekkoatletyka", "Sport");
+keys[1] = new Key("familiada", "Program telewizyjny");
+keys[2] = new Key("Jeden z dziesięciu", "Program telewizyjny");
+keys[3] = new Key("skoki naciarskie", "Sport");
+keys[4] = new Key("kolorowanka", "Rzecz");
+keys[5] = new Key("Świerszcz", "Zwierzę");
+keys[6] = new Key("M jak Miłość", "Telewizja");
+keys[7] = new Key("móżdżek", "Część ciała");
+keys[8] = new Key("Within Temptation", "Zespół");
+keys[9] = new Key("Nie boję się gdy ciemno jest", "Muzyka");
+keys[10] = new Key("Drugi raz pisze się szybciej", "Powiedzenie");
+keys[11] = new Key("Saanah", "Muzyka");
+keys[12] = new Key("Ania z Zielonego Wzgórza", "Literatura");
+keys[13] = new Key("Adam Mickiewicz", "Literatura");
+keys[14] = new Key("Tylko mnie kochaj", "Film");
+keys[15] = new Key("Nic nie może przecież wiecznie trwać", "Muzyka");
+keys[16] = new Key("Miłość w Zakopanem", "Tytuł piosenki");
+keys[17] = new Key("Chrząszcz", "Zwierzę");
+keys[18] = new Key("Dźdźownica", "Zwierzę");
+keys[19] = new Key("Dwutlenek węgla", "Chemia");
+keys[20] = new Key("Cieszmy się kochać ludzi tak szybko odchodzą", "Przysłowie");
+keys[21] = new Key("Gdyby kózka nie skakała toby nóżki nie złamała", "Przysłowie");
+keys[22] = new Key("Szermierka", "Sport");
+keys[23] = new Key("Kwas deoksyrybonukleinowy", "Biochemia");
+keys[24] = new Key("Partycja", "Informatyka");
 
-let key = keys[Math.floor(Math.random() * 15)];
-
-key = key.toUpperCase();
+let key = keys[Math.floor(Math.random() * 25)];
+let cat = key.category.toUpperCase();
+key = key.name.toUpperCase();
 
 let count = key.length;
 let ile_skuch=0;
@@ -66,10 +79,15 @@ litery[32] = "Z";
 litery[33] = "Ż";
 litery[34] = "Ź";
 
+function print_category(){
+    document.getElementById("category").innerHTML = cat;
+}
+
 for (let i = 0; i < count; i++){
     if (key.charAt(i) === " ") key1 = key1 + " ";
     else key1 = key1 + "-";
 }
+
 function print_key(){
     document.getElementById("sentence").innerHTML = key1;
 }
@@ -84,7 +102,7 @@ function start(){
         if ((i + 1) % 7 === 0) letters=letters+'<div style="clear:both;"></div>'
     }
     document.getElementById("alphabet").innerHTML=letters;
-
+    print_category();
     print_key();
 }
 String.prototype.ustawZnak= function (miejsce, znak){

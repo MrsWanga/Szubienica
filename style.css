@@ -11,7 +11,7 @@ body {
     margin-inline: auto;
 }
 
-#sentence {
+#sentence, #category {
     width: 900px;
     margin-inline: auto;
     margin-block: 30px;
