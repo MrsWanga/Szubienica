@@ -1,4 +1,4 @@
-var keys = new Array(20);
+let keys = new Array(20);
 keys[0] = "lekkoatletyka";
 keys[1] = "interpunkcja";
 keys[2] = "telekomunikacja";
@@ -17,18 +17,18 @@ keys[14] = "Tylko mnie kochaj";
 keys[15] = "Nic nie może przecież wiecznie trwać";
 keys[16] = "Miłość w Zakopanem";
 
-var key = keys[Math.floor(Math.random() * 15)];
+let key = keys[Math.floor(Math.random() * 15)];
 
 key = key.toUpperCase();
 
-var count = key.length;
-var ile_skuch=0;
+let count = key.length;
+let ile_skuch=0;
 
-var yes = new Audio("yes.wav");
-var no = new Audio ("no.wav");
+const yes = new Audio("yes.wav");
+const no = new Audio ("no.wav");
 
-var key1 = "";
-var litery = new Array(35);
+let key1 = "";
+let litery = new Array(35);
 
 litery[0] = "A";
 litery[1] = "Ą";
@@ -66,9 +66,9 @@ litery[32] = "Z";
 litery[33] = "Ż";
 litery[34] = "Ź";
 
-for (i=0; i<count; i++){
-    if(key.charAt(i)==" ")key1=key1+" ";
-    else key1=key1+"-";
+for (let i = 0; i < count; i++){
+    if (key.charAt(i) === " ") key1 = key1 + " ";
+    else key1 = key1 + "-";
 }
 function print_key(){
     document.getElementById("sentence").innerHTML = key1;
@@ -77,68 +77,68 @@ function print_key(){
 window.onload = start;
 
 function start(){
-    var letters ="";
-    for(i=0; i<=34; i++){
-        var element="lit" + i;
-        letters = letters + '<div class="letter" onclick="sprawdz('+i+')" id="'+element+'">'+litery[i]+'</div>';
-        if((i+1)%7==0) letters=letters+'<div style="clear:both;"></div>'
+    let letters = "";
+    for (let i = 0; i <= 34; i++){
+        let element = "lit" + i;
+        letters = letters + '<div class = "letter" onclick = "sprawdz('+i+')" id = "'+element+'">' + litery[i] + '</div>';
+        if ((i + 1) % 7 === 0) letters=letters+'<div style="clear:both;"></div>'
     }
     document.getElementById("alphabet").innerHTML=letters;
 
     print_key();
 }
 String.prototype.ustawZnak= function (miejsce, znak){
-    if(miejsce>this.length-1) return this.toString();
-    else{
-        return this.substr(0,miejsce)+znak+this.substr(miejsce+1)
+    if (miejsce>this.length-1) return this.toString();
+    else {
+        return this.substr(0, miejsce)+znak+this.substr(miejsce + 1)
     }
 }
 
 function sprawdz(nr){
-    var trafiona = false;
+    let trafiona = false;
 
-    for(i=0; i<count; i++){
-        if(key.charAt(i)==litery[nr]){
-            key1=key1.ustawZnak(i,litery[nr]);
-            trafiona=true;
+    for (let i = 0; i < count; i++){
+        if (key.charAt(i) === litery[nr]){
+            key1 = key1.ustawZnak(i, litery[nr]);
+            trafiona = true;
         }
     }
 
-    if(trafiona==true){
+    if (trafiona === true){
         yes.play();
-        var element="lit" + nr;
-        document.getElementById(element).style.background ="#003300";
-        document.getElementById(element).style.color ="#00C000";
-        document.getElementById(element).style.border ="3px solid #00C000";
-        document.getElementById(element).style.cursor ="default";
+        let element = "lit" + nr;
+        document.getElementById(element).style.background = "#003300";
+        document.getElementById(element).style.color = "#00C000";
+        document.getElementById(element).style.border = "3px solid #00C000";
+        document.getElementById(element).style.cursor = "default";
 
         print_key()
-    }else{
+    } else{
         no.play();
-        var element="lit" + nr;
-        document.getElementById(element).style.background ="#330000";
-        document.getElementById(element).style.color ="#C00000";
-        document.getElementById(element).style.border ="3px solid #C00000";
-        document.getElementById(element).style.cursor ="default";
+        let element = "lit" + nr;
+        document.getElementById(element).style.background = "#330000";
+        document.getElementById(element).style.color = "#C00000";
+        document.getElementById(element).style.border = "3px solid #C00000";
+        document.getElementById(element).style.cursor = "default";
         document.getElementById(element).setAttribute("onclick",";"); // dezaktywujemy literkę która już spowodowała skuchę
 
 
         //skucha
         ile_skuch++;
-        var obraz = "img/s"+ile_skuch+".jpg";
-        document.getElementById("image").innerHTML='<img src="'+obraz+'"alt="" />';
+        let obraz = "img/s"+ile_skuch+".jpg";
+        document.getElementById("image").innerHTML = '<img src = "'+obraz+'" alt = "" />';
     }
 
     //wygrana
-    if(key==key1){
-        document.getElementById("alphabet").innerHTML='<div style="color: green">Tak jest! Podano prawidłowe hasło:</div></br>'+key+
+    if (key === key1){
+        document.getElementById("alphabet").innerHTML = '<div style = "color: green">Tak jest! Podano prawidłowe hasło:</div></br>' + key +
             '</br></br><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>'
     }
 
     //wygrana
-    if(ile_skuch==9){
-        document.getElementById("alphabet").innerHTML='<div style="color: darkred">Przegrana! Prawidłowe hasło:</br>'+key+
-            '</br></br><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>'
+    if (ile_skuch === 9){
+        document.getElementById("alphabet").innerHTML = '<div style = "color: darkred">Przegrana! Prawidłowe hasło:</div></br>' + key +
+            '</br></br><span class = "reset" onclick = "location.reload()">JESZCZE RAZ?</span>'
     }
 
 }
